@@ -1,1 +1,0 @@
-/home/pr2admin/work/rocksdb_example/build/CMakeFiles/my_rocksdb.dir

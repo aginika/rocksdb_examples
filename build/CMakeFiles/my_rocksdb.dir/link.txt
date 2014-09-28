@@ -1,1 +1,0 @@
-/usr/bin/c++   -std=c++11  -DROCKSDB_PLATFORM_POSIX  -DOS_LINUX -fno-builtin-memcmp -DROCKSDB_ATOMIC_PRESENT -DROCKSDB_FALLOCATE_PRESENT -DSNAPPY -DGFLAGS=google -DZLIB -DBZIP2    CMakeFiles/my_rocksdb.dir/src/my_rocksdb.cpp.o  -o ../bin/my_rocksdb -rdynamic /usr/local/lib/librocksdb.a 
