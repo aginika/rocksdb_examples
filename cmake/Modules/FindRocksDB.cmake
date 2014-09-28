@@ -1,0 +1,25 @@
+##
+#ROCKS DB FIindRockSDB
+##
+
+IF(WIN32)
+ELSE(WIN32)
+  IF(APPLE)
+  ELSE(APPLE)
+    ##Linux
+    FIND_PATH(ROCKSDB_INCLUDE_DIR NAMES rocksdb/db.h PATHS /usr/local/include/)
+
+    FIND_LIBRARY(ROCKSDB_LIBRARY 
+      NAMES librocksdb.a
+      PATHS /usr/local/lib
+      )
+
+    SET(ROCKSDB_LIBRARIES ${ROCKSDB_LIBRARY})
+    SET(ROCKSDB_INCLUDE_DIRS ${ROCKSDB_INCLUDE_DIR})
+
+    list(APPEND CMAKE_CXX_FLAGS "-std=c++11  -DROCKSDB_PLATFORM_POSIX  -DOS_LINUX -fno-builtin-memcmp -DROCKSDB_ATOMIC_PRESENT -DROCKSDB_FALLOCATE_PRESENT -DSNAPPY -DGFLAGS=google -DZLIB -DBZIP2")
+
+    INCLUDE(FindPackageHandleStandardArgs)
+    find_package_handle_standard_args(RocksDB ROCKSDB_INCLUDE_DIR ROCKSDB_LIBRARY)
+  ENDIF(APPLE)
+ENDIF(WIN32)
