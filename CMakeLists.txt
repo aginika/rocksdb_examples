@@ -1,24 +1,19 @@
 cmake_minimum_required(VERSION 2.8)
 project(rocksdb_cmake_text)
 
-find_package(PkgConfig)
-#Find RocksDB
-pkg_check_modules(GFlags libgflags)
-find_package(BZip2)
-#find_package(snappy)
-#pkg_check_modules(GFlags libgflags)
-#find_package(rt_lib rt)
-find_package(ZLIB)
-#find_package(SNAPPY)
-set(SNAPPY_INCLUDE_DIR /usr/include/)
-set(SNAPPY_LIBRARY /usr/lib/libsnappy.so)
-find_package(Threads)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin")
+
+find_package(PkgConfig)
+pkg_check_modules(GFlags libgflags)
+find_package(BZip2)
+find_package(ZLIB)
+find_package(Threads)
 
 message("${CMAKE_MODULE_PATH}")
 
 find_package(RocksDB REQUIRED)
+find_package(Snappy REQUIRED)
 
 include_directories(${ROCKSDB_INCLUDE_DIR} ${BZ2_INCLUDE_DIR} ${GFlags_INCLUDE_DIR} ${THREADS_INCLUDE_DIR} ${ZLIB_INCLUDE_DIR} ${SNAPPY_INCLUDE_DIR})
 
