@@ -5,6 +5,20 @@
 IF(WIN32)
 ELSE(WIN32)
   IF(APPLE)
+    FIND_PATH(ROCKSDB_INCLUDE_DIR NAMES rocksdb/db.h PATHS /usr/local/include/)
+
+    FIND_LIBRARY(ROCKSDB_LIBRARY 
+      NAMES librocksdb.a
+      PATHS /usr/local/lib
+      )
+
+    SET(ROCKSDB_LIBRARIES ${ROCKSDB_LIBRARY})
+    SET(ROCKSDB_INCLUDE_DIRS ${ROCKSDB_INCLUDE_DIR})
+
+    list(APPEND CMAKE_CXX_FLAGS "-std=c++11  -DROCKSDB_PLATFORM_POSIX  -DOS_MACOXS -DROCKSDB_ATOMIC_PRESENT -DSNAPPY -DGFLAGS=google -DZLIB -DBZIP2")
+
+    INCLUDE(FindPackageHandleStandardArgs)
+    find_package_handle_standard_args(RocksDB ROCKSDB_INCLUDE_DIR ROCKSDB_LIBRARY)
   ELSE(APPLE)
     ##Linux
     FIND_PATH(ROCKSDB_INCLUDE_DIR NAMES rocksdb/db.h PATHS /usr/local/include/)

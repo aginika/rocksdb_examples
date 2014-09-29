@@ -17,5 +17,8 @@ find_package(Snappy REQUIRED)
 
 include_directories(${ROCKSDB_INCLUDE_DIR} ${BZ2_INCLUDE_DIR} ${GFlags_INCLUDE_DIR} ${THREADS_INCLUDE_DIR} ${ZLIB_INCLUDE_DIR} ${SNAPPY_INCLUDE_DIR})
 
-add_executable(my_rocksdb src/my_rocksdb)
-target_link_libraries(my_rocksdb ${ROCKSDB_LIBRARY} ${BZIP2_LIBRARIES} ${GFlags_INCLUDE_DIR} ${CMAKE_THREAD_LIBS_INIT} ${ZLIB_LIBRARY} ${SNAPPY_LIBRARY} rt)
+add_executable(my_rocksdb src/my_rocksdb.cpp)
+target_link_libraries(my_rocksdb ${ROCKSDB_LIBRARY} ${BZIP2_LIBRARIES} ${GFlags_INCLUDE_DIR} ${CMAKE_THREAD_LIBS_INIT} ${ZLIB_LIBRARY} ${SNAPPY_LIBRARY})
+
+add_executable(my_column_family src/my_column_family.cpp)
+target_link_libraries(my_column_family ${ROCKSDB_LIBRARY} ${BZIP2_LIBRARIES} ${GFlags_INCLUDE_DIR} ${CMAKE_THREAD_LIBS_INIT} ${ZLIB_LIBRARY} ${SNAPPY_LIBRARY})
